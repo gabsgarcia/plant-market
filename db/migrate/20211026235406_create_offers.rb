@@ -3,9 +3,10 @@ class CreateOffers < ActiveRecord::Migration[6.0]
     create_table :offers do |t|
       t.string :title
       t.string :category
-      t.references :id_buyer
-      t.references :id_seller
+      t.string :description
+      t.references :user
       t.boolean :status
+      t.integer :buyer_id
 
       t.timestamps
     end
