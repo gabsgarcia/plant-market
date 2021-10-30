@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(version: 2021_10_27_002730) do
   create_table "offers", force: :cascade do |t|
     t.string "title"
     t.string "category"
-    t.string "description"
-    t.bigint "user_id"
+    t.bigint "id_buyer_id"
+    t.bigint "id_seller_id"
     t.boolean "status"
-    t.integer "buyer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_offers_on_user_id"
+    t.index ["id_buyer_id"], name: "index_offers_on_id_buyer_id"
+    t.index ["id_seller_id"], name: "index_offers_on_id_seller_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_002730) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
-    t.boolean "admin", default: false
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
