@@ -4,13 +4,14 @@ class OffersController < ApplicationController
 
   def index
     @offers = policy_scope(Offer).order(created_at: :desc)
-    @offers = Offer.all
-      @markers = @offers.geocoded.map do |offer|
-        {
-          lat: offer.latitude,
-          lng: offer.longitude
-        }
-      end
+    @markers = @offers.geocoded.map do |offer|
+      {
+        lat: offer.latitude,
+        lng: offer.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { offer: offer }),
+        image_url: helpers.asset_url('marker.png')
+      }
+    end
   end
 
   def show
@@ -54,7 +55,7 @@ class OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:title, :category, :status, :description, :user_id, :buyer_id)
+    params.require(:offer).permit(:title, :category, :status, :description, :address, :user_id, :buyer_id)
   end
 
   def set_offer
