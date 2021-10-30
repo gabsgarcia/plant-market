@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_10_30_152436) do
   create_table "offers", force: :cascade do |t|
     t.string "title"
     t.string "category"
-    t.string "description"
     t.bigint "user_id"
     t.boolean "status"
     t.integer "buyer_id"
