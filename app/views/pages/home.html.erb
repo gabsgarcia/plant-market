@@ -1,6 +1,47 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <h1>PLANT MARKET</h1>
+  <p>Spread the green</p>
 
-<% if policy(Offer).create? %>
-  <%= link_to "New offer", new_offer_path %>
-<% end %>
+  <% if policy(Offer).create? %>
+    <%= link_to "New offer", new_offer_path %>
+  <% end %>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card">
+        <%= image_tag "suculentas.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title">Suculenta</h5>
+          <p class="card-text">Mussum Ipsum, cacilds vidis litro abertis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Si num tem leite então bota uma pinga aí cumpadi! Cevadis im ampola pa arma uma pindureta.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <%= image_tag "mudas.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title">Mudas novas</h5>
+          <p class="card-text">Mussum Ipsum, cacilds vidis litro abertis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Si num tem leite então bota uma pinga aí cumpadi! Cevadis im ampola pa arma uma pindureta.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <%= image_tag "planta_decoração.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title">Alecrim</h5>
+          <p class="card-text">Mussum Ipsum, cacilds vidis litro abertis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Si num tem leite então bota uma pinga aí cumpadi! Cevadis im ampola pa arma uma pindureta.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <%= image_tag "flower.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title">Margarida</h5>
+          <p class="card-text">Mussum Ipsum, cacilds vidis litro abertis. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Não sou faixa preta cumpadi, sou preto inteiris, inteiris. Si num tem leite então bota uma pinga aí cumpadi! Cevadis im ampola pa arma uma pindureta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
