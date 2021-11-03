@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
+  DISTRICTS = ["Vila Mariana", "Liberdade", "Vila Madalena"]
 
   def index
     @offers = policy_scope(Offer).order(created_at: :desc)
@@ -19,6 +20,7 @@ class OffersController < ApplicationController
   end
 
   def new
+    @districts = DISTRICTS
     @offer = Offer.new
     authorize @offer
   end
@@ -48,14 +50,14 @@ class OffersController < ApplicationController
   end
 
   def edit
-    @offer.update(offer_params)
-    redirect_to offer_path(@offer)
+    @districts = DISTRICTS
   end
 
   private
 
   def offer_params
-    params.require(:offer).permit(:title, :category, :status, :description, :address, :user_id, :buyer_id, :photo)
+    params.require(:offer).permit(:title, :category, :status, :description,
+                                  :address, :district, :user_id, :buyer_id, :photo)
   end
 
   def set_offer
