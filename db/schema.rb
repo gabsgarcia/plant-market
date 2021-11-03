@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_10_30_152436) do
     t.string "title"
     t.string "category"
     t.string "description"
+    t.string "district"
     t.bigint "user_id"
     t.boolean "status"
     t.integer "buyer_id"

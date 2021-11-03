@@ -5,7 +5,9 @@
         <%= f.input :title %>
         <%= f.input :description %>
         <%= f.input :address %>
+        <%= f.input :photo %>
         <%= f.input :category, collection: Offer::CATEGORIES %>
+        <%= f.input :district, collection: @districts %>
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
     </div>
