@@ -1,14 +1,3 @@
-
-<% @offers.each do |offer| %>
-  <% if policy(offer).edit? %>
-    <% if offer.title != "" %>
-      <%= link_to edit_offer_path(offer) do %>
-        <i class="fas fa-pen">update</i>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-
 <div class="container">
   <div id="map"
     style="width: 100%; height: 400px;"
@@ -24,7 +13,7 @@
             <%= cl_image_tag offer.photo.key, width: 200, height: 150, crop: :fill %>
             <h5 class="card-title"><%= offer.title %></h5>
           <% end %>
-          <% if policy(offer).edit? %>
+          <% if policy(offer).edit? || offer.title != "" %>
             <%= link_to "Update", edit_offer_path(offer) %>
           <% end %>
         </div>

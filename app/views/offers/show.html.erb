@@ -13,6 +13,9 @@
         <table class="table table-bordered">
           <tbody>
             <tr>
+              <%= cl_image_tag @offer.photo.key, width: 400, height: 300, crop: :fill %>
+            </tr>
+            <tr>
               <th scope="row">Description</th>
               <td><%= @offer.description %></td>
             </tr>
@@ -24,7 +27,6 @@
               <th scope="row">Address</th>
               <td><%= @offer.address %></td>
             </tr>
-            <%= cl_image_tag @offer.photo.key, height: 300, width: 400, crop: :fill %>
           </tbody>
         </table>
       </div>
