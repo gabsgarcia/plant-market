@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_offer, only: [ :show, :edit, :update, :destroy, :available ]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
   DISTRICTS = ["Vila Mariana", "Liberdade", "Vila Madalena"]
 
@@ -42,6 +42,11 @@ class OffersController < ApplicationController
     else
       render "destroy"
     end
+  end
+
+  def available
+    @offer.update(status: !@offer.status)
+    redirect_to offer_path(@offer)
   end
 
   def update
