@@ -1,6 +1,10 @@
 <% @offers.each do |offer| %>
   <% if policy(offer).edit? %>
-    <%= link_to "Update", edit_offer_path(offer) %>
+    <% if offer.title != "" %>
+      <%= link_to edit_offer_path(offer) do %>
+        <i class="fas fa-pen">update</i>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 
