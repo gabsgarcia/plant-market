@@ -1,7 +1,7 @@
 class Offer < ApplicationRecord
   has_one_attached :photo
 
-  CATEGORIES = ["medicinal", "florifera", "decoração"]
+  CATEGORIES = ["Medicinal", "Florifera", "Decoração", "Suculenta"]
 
   belongs_to :user
 
