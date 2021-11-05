@@ -27,6 +27,10 @@ class OfferPolicy < ApplicationPolicy
     return true
   end
 
+  def search?
+    return true
+  end
+
   private
 
   def user_is_owner_or_admin?

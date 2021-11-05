@@ -1,4 +1,14 @@
 <div class="container">
+  <%= form_tag search_path, method: :get do %>
+    <%= select_tag :district,
+      options_for_select([["Vila Madalena"],["Pinheiros"], ["Vila Mariana"]]), {:class => "btn btn-ghost", :prompt => 'District'}
+    %>
+    <%= select_tag :category,
+      options_for_select(Offer::CATEGORIES.each_with_index{|index,x| [x, index]}), {:class => "btn btn-ghost", :prompt => 'Categories'}
+    %>
+    <%= submit_tag "Search", class: "btn-primary" %>
+  <% end %>
+
   <h1>PLANT MARKET</h1>
   <p>Spread the green</p>
 
