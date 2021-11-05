@@ -1,11 +1,34 @@
+
 <% @offers.each do |offer| %>
   <% if policy(offer).edit? %>
-    <%= link_to "Update", edit_offer_path(offer) %>
+    <% if offer.title != "" %>
+      <%= link_to edit_offer_path(offer) do %>
+        <i class="fas fa-pen">update</i>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
 
-<div id="map"
-  style="width: 100%; height: 600px;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+<div class="container">
+  <div id="map"
+    style="width: 100%; height: 400px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
+  <div class="cards">
+    <% @offers.each do |offer| %>
+      <div class="card">
+        <div class="card-body">
+          <%= link_to offer_path(offer) do %>
+            <%= cl_image_tag offer.photo.key, width: 200, height: 150, crop: :fill %>
+            <h5 class="card-title"><%= offer.title %></h5>
+          <% end %>
+          <% if policy(offer).edit? %>
+            <%= link_to "Update", edit_offer_path(offer) %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

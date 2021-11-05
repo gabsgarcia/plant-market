@@ -7,12 +7,13 @@ class Offer < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-  CATEGORIES = ["medicinal", "florifera", "decoração"]
+  
+  CATEGORIES = ["Medicinal", "Florifera", "Decoração", "Suculenta"]
 
   belongs_to :user
 
   validates :user_id, :title, :category, :description, presence: true
-  validates :title, length: { minimum: 6 }
+  validates :title, length: { minimum: 4 }
   validates :category, inclusion: { in: CATEGORIES }
 
   geocoded_by :address

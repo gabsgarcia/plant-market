@@ -1,7 +1,9 @@
 class OffersController < ApplicationController
+
   before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :verify_authorized, only: [ :search]
+  DISTRICTS = ["Vila Mariana", "Liberdade", "Vila Madalena"]
 
   def index
     @offers = policy_scope(Offer).order(created_at: :desc)
@@ -26,9 +28,9 @@ class OffersController < ApplicationController
 
   def create
     @offer = Offer.new(offer_params)
+    authorize @offer
     @offer.user = current_user
     if @offer.save
-      authorize @offer
       redirect_to offer_path(@offer)
     else
       render "new"
@@ -41,6 +43,11 @@ class OffersController < ApplicationController
     else
       render "destroy"
     end
+  end
+
+  def available
+    @offer.update(status: !@offer.status)
+    redirect_to offer_path(@offer)
   end
 
   def update
