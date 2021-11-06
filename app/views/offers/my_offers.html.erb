@@ -5,8 +5,6 @@
         <div class="card">
           <div class="card-body">
             <%= link_to offer_path(offer) do %>
-              <%= cl_image_tag(offer.photo.key,{:width => :auto,  :dpr => :auto, :responsive => :true,
-                                                :crop => "scale", :responsive_placeholder => "blank"})%>
               <%= cl_image_tag offer.photo.key, width: 150, height: 150, crop: :fill %>
               <h5 class="card-title"><%= offer.title %></h5>
             <% end %>
