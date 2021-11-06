@@ -63,6 +63,8 @@ class OffersController < ApplicationController
 
   end
 
+
+
   def search
     if params[:district].present? && params[:category].present?
       @offers = Offer.where(district: params[:district], category: params[:category])

@@ -27,12 +27,12 @@
     <div class="content">
       <div class="cards">
         <% @offers.last(6).each do |offer| %>
-          <div class="card">
+          <div class="card-offer">
             <div class="card-body">
               <%= link_to offer_path(offer) do %>
                 <%#= cl_image_tag(offer.photo.key,{:width => :auto,  :dpr => :auto, :responsive => :true,
                                                   :crop => "scale", :responsive_placeholder => "blank"})%>
-                <%= cl_image_tag offer.photo.key, width: 100, height: 100, crop: :fill %>
+                <%= cl_image_tag "profile.jpg", width: 100, height: 100, crop: :fill %>
                 <h5 class="card-title"><%= offer.title %></h5>
               <% end %>
               <% if current_user && offer.user == current_user %>
