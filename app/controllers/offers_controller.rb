@@ -1,8 +1,8 @@
 class OffersController < ApplicationController
 
-  before_action :set_offer, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_offer, only: [ :show, :edit, :update, :available, :destroy ]
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
-  before_action :verify_authorized, only: [ :search]
+  before_action :verify_authorized, only: [ :search ]
   DISTRICTS = ["Vila Mariana", "Liberdade", "Vila Madalena"]
 
   def index
@@ -15,6 +15,10 @@ class OffersController < ApplicationController
         image_url: helpers.asset_url('marker.png')
       }
     end
+  end
+
+  def home
+    authorize @offers
   end
 
   def show
@@ -56,8 +60,7 @@ class OffersController < ApplicationController
   end
 
   def edit
-    @offer.update(offer_params)
-    redirect_to offer_path(@offer)
+
   end
 
   def search
