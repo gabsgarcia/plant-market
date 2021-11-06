@@ -1,15 +1,17 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-3">
     <div class="card">
       <h1><%= @offer.title %></h1>
-      <div class="icone">
-        <% if current_user %>
-          <%= link_to available_path, method: :patch, class: "status-#{@offer.status}" do %>
-            <i class="fas fa-spa"></i> Change status
+      <% if current_user %>
+        <div class="icone">
+          <% if current_user %>
+            <%= link_to available_path, method: :patch, class: "status-#{@offer.status}" do %>
+              <i class="fas fa-spa"></i> Change status
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        </div>
+      <% end %>
+      <div class="col-xs-12 col-sm-8">
         <table class="table table-bordered">
           <tbody>
             <tr>
@@ -28,6 +30,28 @@
               <td><%= @offer.address %></td>
             </tr>
           </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card">
+        <strong>Contac</strong>
+        <table class="table table-bordered">
+          <tbody>
+            <th scope="row">Phone Number:</th>
+            <td><%= @offer.user.phone %></td>
+          </tbody>
+          <% if @offer.user.whatsapp %>
+            <tbody>
+            <th scope="row">
+              <i class="fab fa-whatsapp"></i>
+            </th>
+            <td>
+              <a href="https://wa.me/55<%=@offer.user.phone %>?texto=Eu%20gostaria%20de%20ter%20mais%20informações%20sobre%20sua%20planta" target="_blank">
+              Chat to Whatsapp</a>
+            </td>
+          </tbody>
+          <% end %>
         </table>
       </div>
     </div>
