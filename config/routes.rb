@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   get '/search/', to: 'offers#search', as: 'search'
   patch "offers/:id/available", to: "offers#available", as: :available
+  get "my_offers", to: "offers#my_offers", as: :my_offers
 end
