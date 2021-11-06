@@ -30,7 +30,7 @@ class OfferPolicy < ApplicationPolicy
   def search?
     return true
   end
-  
+
   def available?
     user_is_owner_or_admin?
   end
@@ -38,6 +38,6 @@ class OfferPolicy < ApplicationPolicy
   private
 
   def user_is_owner_or_admin?
-    user == record.user||user.admin
+    @user == record.user || user.admin
   end
 end

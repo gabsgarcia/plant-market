@@ -7,7 +7,7 @@
         <%= f.input :address %>
         <%= f.input :photo %>
         <%= f.input :category, collection: Offer::CATEGORIES %>
-        <%= f.input :district, collection: @districts %>
+        <%= f.input :district, collection: OffersController::DISTRICTS %>
         <%= f.submit class: 'btn btn-primary' %>
       <% end %>
     </div>

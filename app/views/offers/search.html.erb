@@ -1,27 +1,42 @@
 <div class="container">
   <%= form_tag search_path, method: :get do %>
     <%= select_tag :district,
-      options_for_select([["Vila Madalena"],["Pinheiros"], ["Vila Mariana"]]), {:class => "btn btn-ghost", :prompt => 'District'}
+      options_for_select(OffersController::DISTRICTS.each_with_index{|index,x| [x, index]}), {:class => "btn btn-ghost", :prompt => 'District'}
     %>
     <%= select_tag :category,
       options_for_select(Offer::CATEGORIES.each_with_index{|index,x| [x, index]}), {:class => "btn btn-ghost", :prompt => 'Categories'}
     %>
     <%= submit_tag "Search", class: "btn-primary" %>
   <% end %>
-
-  <% if !@offers.empty? %>
-    <% @offers.each do |offer| %>
-      <% if policy(offer).edit? %>
-        <%= link_to "Update", edit_offer_path(offer) %>
+</div>
+<div class="container">
+    <div class="content">
+      <div class="cards">
+        <% if !@offers.empty? %>
+          <% @offers.each do |offer| %>
+            <div class="card">
+              <div class="card-body">
+                <%= link_to offer_path(offer) do %>
+                  <%#= cl_image_tag(offer.photo.key,{:width => :auto,  :dpr => :auto, :responsive => :true,
+                                                    :crop => "scale", :responsive_placeholder => "blank"})%>
+                  <%= cl_image_tag offer.photo.key, width: 100, height: 100, crop: :fill %>
+                  <h5 class="card-title"><%= offer.title %></h5>
+                <% end %>
+                <% if current_user && offer.user == current_user %>
+                  <%= link_to "Edit", edit_offer_path(offer) %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div id="map"
+          style="width: 100vh; height: 100vh;"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      <% else %>
+        <h2>Sorry, we couldn't find any offers yet</h2>
       <% end %>
-    <% end %>
-
-    <div id="map"
-      style="width: 100%; height: 600px;"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-    <% else %>
-      <h2>Sorry, we couldn't find any offers yet</h2>
-    <% end %>
+  </div>
 </div>

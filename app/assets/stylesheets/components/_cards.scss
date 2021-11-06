@@ -1,11 +1,32 @@
+.content {
+  display: flex;
+}
+
 .cards {
+  flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 16px;
+  padding: 16px;
 }
 
 .card {
+  color: rgba(11, 141, 102, 0.829);
+  font-size: 20px;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.card-title {
+  color: rgba(11, 141, 102, 0.829);
+  font-size: 20px;
+  font-weight: bold;
 }
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
