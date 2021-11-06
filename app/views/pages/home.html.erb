@@ -33,7 +33,7 @@
                 <% if offer.photo.present? %>
                   <%= cl_image_tag offer.photo.key, width: 100, height: 100, crop: :fill %>
                 <% else %>
-                  <%= image_tag planta_decoração, width: 100, height: 100, crop: :fill %>
+                  <%= image_tag "planta_decoração.jpg", width: 100, height: 100, crop: :fill %>
                 <% end %>
                 <h5 class="card-title"><%= offer.title %></h5>
               <% end %>
