@@ -3,7 +3,7 @@ class OffersController < ApplicationController
   before_action :set_offer, only: [ :show, :edit, :update, :available, :destroy ]
   skip_before_action :authenticate_user!, only: [ :index, :show, :search ]
   before_action :verify_authorized, only: [ :search ]
-  DISTRICTS = ["Vila Mariana", "Liberdade", "Vila Madalena"]
+  DISTRICTS = [ "Butantã", "Cambuci", "Centro", "Consolação", "Liberdade", "Mooca", "Pinheiros", "Santana", "Saúde", "Sé", "Vila Leopoldina", "Vila Madalena", "Vila Mariana" ]
 
   def index
     @offers = policy_scope(Offer).order(created_at: :desc)
@@ -23,6 +23,10 @@ class OffersController < ApplicationController
 
   def show
 
+  end
+
+  def my_offers
+    @offers = Offer.where(user: current_user)
   end
 
   def new
@@ -68,8 +72,24 @@ class OffersController < ApplicationController
   def search
     if params[:district].present? && params[:category].present?
       @offers = Offer.where(district: params[:district], category: params[:category])
+      @markers = @offers.geocoded.map do |offer|
+        {
+          lat: offer.latitude,
+          lng: offer.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { offer: offer }),
+          image_url: helpers.asset_url('marker.png')
+        }
+      end
     else
       @offers = Offer.all
+      @markers = @offers.geocoded.map do |offer|
+        {
+          lat: offer.latitude,
+          lng: offer.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { offer: offer }),
+          image_url: helpers.asset_url('marker.png')
+        }
+      end
     end
   end
 
