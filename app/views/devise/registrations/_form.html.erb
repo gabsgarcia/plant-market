@@ -18,7 +18,10 @@
         placeholder: 'Upload picture',
         direct_upload: true
         %>
-
+    <%= f.input :phone,
+                  required: true,
+                  input_html: { autocomplete: "Your Phone Number" } %>
+    <%= f.input :whatsapp, label: "Whatsapp?"%>
   </div>
 
   <div class="form-actions">
